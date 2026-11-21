@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cesar Rodriguez · Operations, Data and AI</title>
-<meta name="description" content="Industrial engineer in Lausanne with 20+ years in pharma, biotech and medtech operations. Three AI and data workflows, built and measured.">
+<meta name="description" content="Industrial engineer in Lausanne with 20+ years in pharma, biotech and medtech operations. Two AI and data workflows, built and measured.">
 <meta property="og:title" content="Cesar Rodriguez · Operations, Data and AI">
-<meta property="og:description" content="20+ years in pharma, biotech and medtech operations. Three AI and data workflows, built and measured.">
+<meta property="og:description" content="20+ years in pharma, biotech and medtech operations. Two AI and data workflows, built and measured.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cesarrb.github.io/">
 <meta name="color-scheme" content="light dark">
@@ -127,52 +127,18 @@ footer p{margin:0;max-width:80ch}
     <li><b>LinkedIn</b> <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">cesar-rodriguez-17401611</a></li>
     <li><b>GitHub</b> <a href="https://github.com/cesarrb">github.com/cesarrb</a></li>
   </ul>
-  <h2 class="sub">Three AI and data workflows, built and measured</h2>
+  <h2 class="sub">Two AI and data workflows, built and measured</h2>
   <p class="lede small">Each case shows the problem, the tools, what I built, the guardrails and numbers you can check. All data is my own or public; no employer data is used.</p>
   <nav class="index" aria-label="Workflows">
-    <a href="#w1"><span class="n">W1 · LLM triage</span><span class="t">Job-market radar</span><span class="m">108,904 postings screened, 14,160 scored by a local model</span></a>
-    <a href="#w2"><span class="n">W2 · RAG and knowledge</span><span class="t">Knowledge assistant with verified citations</span><span class="m">237 h of video and 6,398 passages made searchable</span></a>
-    <a href="#w3"><span class="n">W3 · Data governance</span><span class="t">Governed data, ready for AI</span><span class="m">182 column-level lineage links, 4 data contracts, CI</span></a>
+    <a href="#w2"><span class="n">W1 · RAG and knowledge</span><span class="t">Knowledge assistant with verified citations</span><span class="m">237 h of video and 6,398 passages made searchable</span></a>
+    <a href="#w3"><span class="n">W2 · Data governance</span><span class="t">Governed data, ready for AI</span><span class="m">182 column-level lineage links, 4 data contracts, CI</span></a>
   </nav>
 </header>
-
-<!-- W1 -->
-<section class="case" id="w1">
-  <div class="case-head">
-    <div class="row"><span class="eyebrow">W1 · LLM triage pipeline</span><span class="tag priv">Private repo · demo on request</span></div>
-    <h2>Job-market radar: thousands of postings read and ranked by a local LLM</h2>
-    <p>A daily system that collects job postings from Swiss boards and employer career sites, removes duplicates and asks a local large language model (LLM) how well each one fits a given profile.</p>
-  </div>
-  <div class="stats">
-    <div class="stat"><b>108,904</b><span>unique postings, de-duplicated by fingerprint</span></div>
-    <div class="stat"><b>14,160</b><span>fit assessments written by the LLM</span></div>
-    <div class="stat"><b>257</b><span>employer career sites, plus about 10 job boards</span></div>
-    <div class="stat"><b>3 a day</b><span>full sweeps, plus a fast check every 10 minutes</span></div>
-  </div>
-  <div>
-    <div class="flow"><ol>
-      <li><div class="box"><b>Collect</b><small>boards + 257 career sites</small></div></li>
-      <li><div class="box"><b>De-duplicate</b><small>fingerprint per posting</small></div></li>
-      <li><div class="box"><b>Pre-filter</b><small>keywords, language, location</small></div></li>
-      <li><div class="box ai"><b>LLM fit score</b><small>rubric + verified facts</small></div></li>
-      <li><div class="box"><b>Rank and alert</b><small>freshest first</small></div></li>
-      <li><div class="box human"><b>Human decides</b><small>apply or skip</small></div></li>
-    </ol></div>
-    <div class="legend"><span><i class="a"></i>AI step</span><span><i class="h"></i>Human step</span></div>
-  </div>
-  <div class="spec">
-    <div><h3>Problem</h3><p>Checking job boards and hundreds of company sites by hand took hours every day, and roles posted early in the morning were often missed.</p></div>
-    <div><h3>Tools</h3><p>Python collectors, Qwen 3.6 running locally through Ollama, Claude Code to build and maintain it, macOS launchd for scheduling.</p></div>
-    <div><h3>What I built</h3><ul><li>Readers for several applicant tracking systems (ATS) and job boards</li><li>A scoring rubric plus a list of verified facts the model must use</li><li>A daily history and a page that shows how old each source's data is</li></ul></div>
-    <div><h3>Guardrails</h3><ul><li>The model cannot invent requirements or experience: it scores against the facts list only</li><li>No bypassing of anti-bot protections</li><li>Runs on a local model, so no profile data leaves the machine</li></ul></div>
-  </div>
-  <p class="twin"><b>Business equivalent:</b> the same pattern triages supplier notices, deviation reports, regulatory updates or customer complaints, so specialists only read the few that matter.</p>
-</section>
 
 <!-- W2 -->
 <section class="case" id="w2">
   <div class="case-head">
-    <div class="row"><span class="eyebrow">W2 · Retrieval-augmented generation (RAG)</span><span class="tag">Public repo</span></div>
+    <div class="row"><span class="eyebrow">W1 · Retrieval-augmented generation (RAG)</span><span class="tag">Public repo</span></div>
     <h2>Knowledge assistant: answers from recorded talks, with citations that are checked</h2>
     <p>A private chat assistant over transcripts and documents. It searches by keyword and by meaning, answers only from what it found, and removes any citation that points to a passage it never retrieved.</p>
   </div>
@@ -206,7 +172,7 @@ footer p{margin:0;max-width:80ch}
 <!-- W3 -->
 <section class="case" id="w3">
   <div class="case-head">
-    <div class="row"><span class="eyebrow">W3 · Data governance for AI</span><span class="tag">Public repo · live demo</span></div>
+    <div class="row"><span class="eyebrow">W2 · Data governance for AI</span><span class="tag">Public repo · live demo</span></div>
     <h2>Governed data, ready for AI: catalogue, lineage and contracts kept as code</h2>
     <p>AI is only as reliable as the data behind it. This project governs a synthetic SAP-style supply chain from ERP tables to the KPI dashboard, using OpenMetadata, dbt and Metabase, all checked automatically on every change.</p>
   </div>
@@ -262,7 +228,7 @@ footer p{margin:0;max-width:80ch}
 </section>
 
 <footer>
-  <p>Workflow figures measured on 19 November 2026 from each project's own data files and repositories. The job-market radar's code is private because it contains personal profile data; a screen-share demo is available on request.</p>
+  <p>Workflow figures measured on 19 November 2026 from each project's own data files and repositories.</p>
   <p>Cesar Rodriguez · Lausanne · <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">LinkedIn</a> · <a href="https://github.com/cesarrb">GitHub</a></p>
 </footer>
 </div>
