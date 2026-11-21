@@ -107,18 +107,13 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 footer p{margin:0;max-width:80ch}
 @media (max-width:640px){.spec{grid-template-columns:1fr}.wrap{padding-block:28px 56px;gap:44px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-
-.toggle{font:600 13px var(--body);background:var(--surface);color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
-.toggle:hover{border-color:var(--accent)}
-body:not(.detail) .case .spec,body:not(.detail) .case .twin,body:not(.detail) .case-head p,body:not(.detail) .method ol li span:not(.k){display:none}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 <header>
-  <div class="topbar"><span class="eyebrow">Lausanne, Switzerland · Swiss C permit</span><button class="toggle" id="tgl" type="button" aria-pressed="false">Show details</button></div>
+  <span class="eyebrow">Lausanne, Switzerland · Swiss C permit</span>
   <h1>Cesar Rodriguez: <span>operations, data and practical AI</span></h1>
   <p class="lede">Industrial engineer with 20+ years in pharma, biotech and medtech (Lonza, Celgene / Bristol Myers Squibb, 3M, CareFusion) and consumer electronics (Apple). I use data and technology to make operations more efficient and more accurate, from planning to delivery, in regulated GxP (good practice) environments.</p>
   <div class="results" aria-label="Results delivered">
@@ -131,7 +126,6 @@ body:not(.detail) .case .spec,body:not(.detail) .case .twin,body:not(.detail) .c
     <li><b>Languages</b> English C2 · French C1 · Spanish native</li>
     <li><b>LinkedIn</b> <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">cesar-rodriguez-17401611</a></li>
     <li><b>GitHub</b> <a href="https://github.com/cesarrb">github.com/cesarrb</a></li>
-    <li><b>Supply chain</b> <a href="supply-chain/">analytics, governance and launches →</a></li>
   </ul>
   <h2 class="sub">Two AI and data workflows, built and measured</h2>
   <p class="lede small">Each case shows the problem, the tools, what I built, the guardrails and numbers you can check. All data is my own or public; no employer data is used.</p>
@@ -238,11 +232,5 @@ body:not(.detail) .case .spec,body:not(.detail) .case .twin,body:not(.detail) .c
   <p>Cesar Rodriguez · Lausanne · <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">LinkedIn</a> · <a href="https://github.com/cesarrb">GitHub</a></p>
 </footer>
 </div>
-<script>
-const tgl=document.getElementById('tgl');
-function setDetail(on){document.body.classList.toggle('detail',on);tgl.setAttribute('aria-pressed',on);tgl.textContent=on?'Hide details':'Show details';try{localStorage.setItem('main-detail',on?'1':'0')}catch(e){}}
-tgl.addEventListener('click',()=>setDetail(!document.body.classList.contains('detail')));
-try{if(localStorage.getItem('main-detail')==='1')setDetail(true)}catch(e){}
-</script>
 </body>
 </html>
