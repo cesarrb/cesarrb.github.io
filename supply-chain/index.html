@@ -107,179 +107,65 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 footer p{margin:0;max-width:80ch}
 @media (max-width:640px){.spec{grid-template-columns:1fr}.wrap{padding-block:28px 56px;gap:44px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-
-/* ---- visual page additions ---- */
-.small{font-size:14px}.muted{color:var(--muted)}
-section>h2{margin:6px 0 14px}
-
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 16px 12px}
-.kpi .big{font:800 34px/1 var(--display);letter-spacing:-.02em;color:var(--fg)}
-.kpi .lbl{font-size:13px;color:var(--muted);margin:6px 0 10px;min-height:2.6em}
-.kpi svg{display:block;width:100%;height:auto}
-.kpi .cap{font:500 11px/1.3 var(--mono);color:var(--muted);display:flex;justify-content:space-between}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px}
-.panel svg{display:block;width:100%;height:auto;overflow:visible}
-.tl-bar{fill:var(--accent);opacity:.85;cursor:default}
-.tl-bar:hover{opacity:1}
-.tl-txt{font:600 13px var(--body);fill:var(--fg)}
-.tl-sub{font:400 11.5px var(--body);fill:var(--muted)}
-.tl-ax{font:500 11px var(--mono);fill:var(--muted)}
-.tl-grid{stroke:var(--line);stroke-width:1}
-.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:stretch}
-.node{position:relative;background:var(--accent-soft);border-radius:8px;padding:14px 12px;text-align:center}
-.node b{display:block;font:800 26px/1.05 var(--display);color:var(--fg)}
-.node span{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
-.node:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:8px;height:2px;background:var(--accent)}
-.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;counter-reset:s}
-.step{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;padding:12px 10px;text-align:center}
-.step .ic{font-size:24px;line-height:1}
-.step b{display:block;font:700 14px/1.25 var(--display);margin-top:6px}
-.step p{font-size:12.5px;color:var(--muted);margin:6px 0 0;display:none}
-body.detail .step p{display:block}
-.detail-only{display:none}
-body.detail .detail-only{display:block}
-.toggle{font:600 13px var(--body);background:var(--surface);color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer}
-.toggle:hover{border-color:var(--accent)}
-.bar-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font:500 12.5px/1.4 var(--body);padding:6px 9px;border-radius:6px;max-width:260px;opacity:0;transition:opacity .12s;z-index:9}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font:500 12.5px var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--fg)}
-.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.proof a.card{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px}
-.proof a.card:hover{border-color:var(--accent)}
-.proof .ic{font-size:22px}
-.proof b{display:block;font:700 15px/1.3 var(--display);margin:6px 0 4px;color:var(--accent)}
-.proof span{font-size:13px;color:var(--muted)}
-@media (max-width:640px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.node:nth-child(2)::after{display:none}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi .big{font-size:30px}}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 <header>
-  <div class="bar-row"><span class="eyebrow">Lausanne · Swiss C permit · open to travel</span><button class="toggle" id="tgl" type="button" aria-pressed="false">Show details</button></div>
+  <span class="eyebrow">Lausanne, Switzerland · Swiss C permit · open to travel</span>
   <h1>Cesar Rodriguez: <span>supply chain analytics, governance and launch readiness</span></h1>
-  <p class="lede">20+ years in pharma, biotech and medtech supply chains. One integrated view of plans, performance, risks and decisions, in GxP environments.</p>
-  <div class="chips"><span class="chip">English C2</span><span class="chip">French C1</span><span class="chip">Spanish native</span><a class="chip" href="https://www.linkedin.com/in/cesar-rodriguez-17401611">LinkedIn ↗</a><a class="chip" href="https://github.com/cesarrb">GitHub ↗</a></div>
+  <p class="lede">Industrial engineer with 20+ years in pharma, biotech and medtech supply chains (Celgene / Bristol Myers Squibb, Lonza, 3M, CareFusion) and consumer electronics (Apple). I give leadership one integrated view of plans, performance, risks and decisions, and I build the dashboards and the single source of truth behind it, in regulated GxP (good practice) environments.</p>
+  <div class="results" aria-label="Results delivered">
+    <div><b>−20%</b><span>third-party logistics (3PL) costs</span></div>
+    <div><b>30 markets</b><span>and 20 logistics partners in one on-time-in-full (OTIF) view, ~32,700 shipments a month</span></div>
+    <div><b>+15%</b><span>forecast accuracy in Europe, Middle East and Africa (EMEA)</span></div>
+    <div><b>~156</b><span>analytics assets governed in one catalogue, with KPI definitions and quarterly audits</span></div>
+  </div>
+  <ul class="facts">
+    <li><b>Languages</b> English C2 · French C1 · Spanish native</li>
+    <li><b>LinkedIn</b> <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">cesar-rodriguez-17401611</a></li>
+    <li><b>GitHub</b> <a href="https://github.com/cesarrb">github.com/cesarrb</a></li>
+  </ul>
 </header>
 
-<section>
-  <span class="eyebrow">Results delivered</span>
-  <h2>Before and after</h2>
-  <div class="kpis" id="kpis"></div>
-  <p class="small muted detail-only">Index: starting level = 100. 3PL costs and OTIF at Celgene / Bristol Myers Squibb; forecast accuracy at 3M (EMEA); excess stock at CareFusion, with service levels maintained.</p>
-</section>
-
-<section>
-  <span class="eyebrow">Distribution network I worked on · Celgene / BMS</span>
-  <h2>From production to 30 markets</h2>
-  <div class="flow">
-    <div class="node"><b>Revlimid</b><span>production planned and integrated into logistics</span></div>
-    <div class="node"><b>20</b><span>third-party logistics partners (3PL)</span></div>
-    <div class="node"><b>30</b><span>markets in one on-time-in-full (OTIF) view</span></div>
-    <div class="node"><b>~32,700</b><span>shipments a month, reported automatically</span></div>
-  </div>
-  <p class="small muted detail-only">Built the analytics platform from scratch (Supply Chain, Finance, Procurement, Quality), led a team of five and governed a catalogue of ~156 analytics assets with KPI definitions and quarterly audits. Caught ~400 missing rows in UAT before go-live.</p>
-</section>
-
-<section>
+<section class="method">
   <span class="eyebrow">Where I have done it</span>
-  <h2>22 years, five companies</h2>
-  <div class="panel"><svg id="tl" viewBox="0 0 900 300" role="img" aria-label="Career timeline 2004 to 2026"></svg></div>
-  <div class="detail-only">
-    <ul class="small">
-      <li><b>Lonza (2025–2026):</b> monthly S&amp;OP process and scenario lock across the sites, from VPs to site teams; Power BI cockpits as one source of truth from SAP, OMP and SQL Server.</li>
-      <li><b>Celgene / BMS (2018–2025):</b> Revlimid production integrated into a network of 30 markets and 20 3PLs; analytics platform built from scratch; team of five.</li>
-      <li><b>3M (2014–2018):</b> EMEA S&amp;OP process from pilot to adoption; production planned with Manufacturing; scenarios and risks in monthly reviews.</li>
-      <li><b>CareFusion (2011–2014):</b> medical product phase-ins and phase-outs; spare parts and consumables in SAP; −20% excess stock.</li>
-      <li><b>Apple (2004–2011):</b> demand forecasting and launch planning across EMEA; allocation models adopted for the iPad and MacBook launches.</li>
-    </ul>
-  </div>
+  <h2>Distribution, planning and launches across five companies</h2>
+  <ol>
+    <li><span class="k">2025 – 2026 · Lonza</span><b>S&amp;OP governance and decision support</b><span>Ran the monthly S&amp;OP process and scenario lock across the sites, from VPs to site teams, with Power BI cockpits as one source of truth from SAP, OMP and SQL Server data.</span></li>
+    <li><span class="k">2018 – 2025 · Celgene / BMS</span><b>Distribution analytics and KPI governance</b><span>Planned Revlimid production and integrated it into a distribution network of 30 markets and 20 3PLs. Built the analytics platform from scratch (Supply Chain, Finance, Procurement, Quality) and led a team of five. Caught ~400 missing rows in UAT before go-live.</span></li>
+    <li><span class="k">2014 – 2018 · 3M</span><b>From pilot to adoption</b><span>Redesigned the EMEA S&amp;OP process and rolled it out across countries through governance meetings and training. Planned production with Manufacturing; scenarios and risks presented in monthly reviews.</span></li>
+    <li><span class="k">2011 – 2014 · CareFusion</span><b>Product transitions and inventory</b><span>Coordinated medical product phase-ins and phase-outs with Marketing, Manufacturing, Quality and Finance. Cut excess stock by 20% with service levels maintained.</span></li>
+    <li><span class="k">2004 – 2011 · Apple</span><b>Launch readiness</b><span>Demand forecasting and launch planning for Apple Retail and Online Stores across EMEA; self-service allocation models adopted for the iPad and MacBook launches.</span></li>
+  </ol>
 </section>
 
-<section>
+<section class="method">
   <span class="eyebrow">How I work</span>
-  <h2>From strategy to a governed portfolio</h2>
-  <div class="steps">
-    <div class="step"><div class="ic" aria-hidden="true">🎯</div><b>Agree the numbers</b><p>One set of KPI definitions, data owners and reporting standards.</p></div>
-    <div class="step"><div class="ic" aria-hidden="true">🗺️</div><b>One integrated plan</b><p>Roadmap, milestones, dependencies and a decision log.</p></div>
-    <div class="step"><div class="ic" aria-hidden="true">⚖️</div><b>Govern the portfolio</b><p>Intake, priorities, capacity and a risk register with owners.</p></div>
-    <div class="step"><div class="ic" aria-hidden="true">📊</div><b>See problems early</b><p>Executive dashboards, scenarios and early-warning indicators.</p></div>
-    <div class="step"><div class="ic" aria-hidden="true">🔁</div><b>Close the loop</b><p>Post-implementation reviews and continuous improvement.</p></div>
-  </div>
+  <h2>From strategy to a governed, visible portfolio</h2>
+  <ol>
+    <li><span class="k">Step 1</span><b>Agree the numbers</b><span>One set of KPI definitions, data owners and reporting standards, so every meeting starts from the same figures.</span></li>
+    <li><span class="k">Step 2</span><b>One integrated plan</b><span>Roadmap, milestones, dependencies and a decision log that leadership can read in minutes.</span></li>
+    <li><span class="k">Step 3</span><b>Govern the portfolio</b><span>Clear intake, priorities and capacity; a risk register with owners and escalation paths.</span></li>
+    <li><span class="k">Step 4</span><b>See problems early</b><span>Executive dashboards, scenario models and early-warning indicators for supply, service and launch readiness.</span></li>
+    <li><span class="k">Step 5</span><b>Close the loop</b><span>Post-implementation reviews, lessons learned and continuous improvement (Lean Six Sigma Green Belt).</span></li>
+  </ol>
 </section>
 
-<section>
+<section class="method">
   <span class="eyebrow">Proof you can open</span>
-  <div class="proof">
-    <a class="card" href="https://cesarrb.github.io/openmetadata-supply-chain-governance/"><div class="ic" aria-hidden="true">🧭</div><b>Data governance · live demo</b><span>SAP-style supply chain, from ERP tables to the OTIF dashboard.</span></a>
-    <a class="card" href="https://cesarrb.github.io/fondos-bankinter/"><div class="ic" aria-hidden="true">⏱️</div><b>Pipeline with early warnings</b><span>26,000+ funds a day, alerts when data gets stale.</span></a>
-    <a class="card" href="../"><div class="ic" aria-hidden="true">🤖</div><b>AI and data workflows</b><span>Two practical cases with measured results.</span></a>
+  <div class="more">
+    <div><b><a href="https://cesarrb.github.io/openmetadata-supply-chain-governance/">Supply chain data governance (live demo)</a></b><span>A synthetic SAP-style supply chain governed from ERP tables to the OTIF dashboard: lineage, KPI glossary, data quality tests and data contracts, checked on every change. <a href="https://github.com/cesarrb/openmetadata-supply-chain-governance">Code</a>.</span></div>
+    <div><b><a href="https://cesarrb.github.io/fondos-bankinter/">Daily data pipeline with early warnings</a></b><span>26,000+ mutual funds snapshotted every weekday, with completeness checks and alerts when data gets stale. <a href="https://github.com/cesarrb/fondos-bankinter">Code</a>.</span></div>
+    <div><b><a href="../">AI and data workflows</a></b><span>Two practical AI and data workflows, with the problem, the tools, the guardrails and measured results.</span></div>
   </div>
 </section>
 
 <footer>
-  <div class="chips"><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">SAP ECC (PP, MM)</span><span class="chip">SAP BW</span><span class="chip">OMP</span><span class="chip">Microsoft Fabric</span><span class="chip">Excel</span><span class="chip">SQL</span><span class="chip">Jira</span><span class="chip">Lean Six Sigma Green Belt</span><span class="chip">PSPO I · PSM I</span></div>
-  <p>Master in AI &amp; Technology · MS Industrial Engineering · <a href="../">Main page</a></p>
+  <p>Tools: Power BI, Tableau, SAP ECC (PP, MM), SAP BW, OMP, Microsoft Fabric, Excel, SQL, Jira. Master in AI &amp; Technology; MS Industrial Engineering; Lean Six Sigma Green Belt; PSPO I, PSM I.</p>
+  <p>Cesar Rodriguez · Lausanne · <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">LinkedIn</a> · <a href="https://github.com/cesarrb">GitHub</a> · <a href="../">Main page</a></p>
 </footer>
 </div>
-<div class="tip" id="tip" role="tooltip"></div>
-
-<script>
-const KPIS=[
- {big:"−20%",lbl:"third-party logistics (3PL) costs",a:100,b:80,good:"lower"},
- {big:"+15%",lbl:"forecast accuracy, EMEA",a:100,b:115,good:"higher"},
- {big:"−20%",lbl:"excess stock, service kept",a:100,b:80,good:"lower"}
-];
-const tip=document.getElementById('tip');
-function showTip(e,t){tip.textContent=t;tip.style.opacity=1;const x=Math.min(e.clientX+12,innerWidth-270);tip.style.left=x+'px';tip.style.top=(e.clientY+14)+'px'}
-function hideTip(){tip.style.opacity=0}
-function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
-const kp=document.getElementById('kpis');
-KPIS.forEach(k=>{
-  const max=120,W=220,H=70,bw=64;
-  const h=v=>v/max*(H-14);
-  const d=document.createElement('div');d.className='kpi';
-  d.innerHTML=`<div class="big">${k.big}</div><div class="lbl">${k.lbl}</div>
-  <svg viewBox="0 0 ${W} ${H+16}" aria-label="${k.lbl}: before ${k.a}, after ${k.b}">
-   <line x1="0" x2="${W}" y1="${H}" y2="${H}" class="tl-grid"/>
-   <rect data-t="Before: index ${k.a}" x="30" y="${H-h(k.a)}" width="${bw}" height="${h(k.a)}" rx="4" fill="var(--line)"/>
-   <rect data-t="After: index ${k.b} (${k.big})" x="${W-30-bw}" y="${H-h(k.b)}" width="${bw}" height="${h(k.b)}" rx="4" fill="var(--accent)"/>
-   <text x="${30+bw/2}" y="${H+13}" text-anchor="middle" class="tl-ax">before</text>
-   <text x="${W-30-bw/2}" y="${H+13}" text-anchor="middle" class="tl-ax">after</text>
-  </svg>`;
-  kp.appendChild(d);
-});
-kp.querySelectorAll('rect[data-t]').forEach(r=>{r.addEventListener('mousemove',e=>showTip(e,r.dataset.t));r.addEventListener('mouseleave',hideTip)});
-
-const JOBS=[
- {c:"Apple",r:"Demand & launch planning, EMEA",s:2004.2,e:2011.4},
- {c:"CareFusion",r:"Supply chain controller",s:2011.45,e:2014.7},
- {c:"3M",r:"S&OP analyst, EMEA",s:2014.75,e:2018.7},
- {c:"Celgene / BMS",r:"Associate Director, business performance",s:2018.75,e:2025.55},
- {c:"Lonza",r:"Supply chain analytics (contract)",s:2025.75,e:2026.45}
-];
-(function(){
-  const svg=document.getElementById('tl'),x0=2004,x1=2026.6,L=10,R=890,rowH=52,top=14;
-  const X=y=>L+(y-x0)/(x1-x0)*(R-L);
-  let g='';
-  for(let y=2004;y<=2026;y+=2){g+=`<line x1="${X(y)}" x2="${X(y)}" y1="${top-6}" y2="${top+JOBS.length*rowH}" class="tl-grid"/><text x="${X(y)}" y="${top+JOBS.length*rowH+16}" text-anchor="middle" class="tl-ax">${y}</text>`}
-  JOBS.forEach((j,i)=>{
-    const y=top+i*rowH, w=Math.max(X(j.e)-X(j.s),6), right=X(j.s)+w>600;
-    g+=`<rect class="tl-bar" data-t="${j.c}: ${j.r} (${Math.floor(j.s)}–${Math.floor(j.e)})" x="${X(j.s)}" y="${y}" width="${w}" height="16" rx="4"/>`;
-    const tx=right? X(j.s)-8 : X(j.s)+w+8, an=right?'end':'start';
-    g+=`<text x="${tx}" y="${y+12}" text-anchor="${an}" class="tl-txt">${j.c}</text><text x="${tx}" y="${y+30}" text-anchor="${an}" class="tl-sub">${j.r}</text>`;
-  });
-  svg.setAttribute('viewBox',`0 0 900 ${top+JOBS.length*rowH+24}`);
-  svg.innerHTML=g;
-  svg.querySelectorAll('.tl-bar').forEach(r=>{r.addEventListener('mousemove',e=>showTip(e,r.dataset.t));r.addEventListener('mouseleave',hideTip)});
-})();
-
-const tgl=document.getElementById('tgl');
-function setDetail(on){document.body.classList.toggle('detail',on);tgl.setAttribute('aria-pressed',on);tgl.textContent=on?'Hide details':'Show details';try{localStorage.setItem('sc-detail',on?'1':'0')}catch(e){}}
-tgl.addEventListener('click',()=>setDetail(!document.body.classList.contains('detail')));
-try{if(localStorage.getItem('sc-detail')==='1')setDetail(true)}catch(e){}
-</script>
 </body>
 </html>
