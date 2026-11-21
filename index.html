@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cesar Rodriguez · Operations, Data and AI</title>
+<meta name="description" content="Industrial engineer in Lausanne with 20+ years in pharma, biotech and medtech operations. Three AI and data workflows, built and measured.">
+<meta property="og:title" content="Cesar Rodriguez · Operations, Data and AI">
+<meta property="og:description" content="20+ years in pharma, biotech and medtech operations. Three AI and data workflows, built and measured.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cesarrb.github.io/">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column; each case is a "workflow spec" sheet (Problem / Tools / Built / Guardrails) with a flow strip and a row of measured results. */
+:root{
+  --bg:#f6f8f8; --surface:#ffffff; --fg:#14211f; --muted:#56655f; --line:#d9e2df;
+  --accent:#0d7a6b; --accent-soft:#dff1ed; --amber:#b86b00; --amber-soft:#fbefd9;
+  --display:"Manrope",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1716; --surface:#16211f; --fg:#e4eeeb; --muted:#9db0aa; --line:#2a3a37;
+  --accent:#4cc6b2; --accent-soft:#163a34; --amber:#f0b25a; --amber-soft:#3a2c14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1716; --surface:#16211f; --fg:#e4eeeb; --muted:#9db0aa; --line:#2a3a37;
+  --accent:#4cc6b2; --accent-soft:#163a34; --amber:#f0b25a; --amber-soft:#3a2c14; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:960px;margin:0 auto;padding-block:48px 72px;display:grid;grid-template-columns:minmax(0,1fr);gap:56px}
+header>*,.case>*{min-width:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:grid;gap:18px}
+h1{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:-.02em}
+h1 span{color:var(--accent)}
+.lede{font-size:18px;max-width:66ch;color:var(--fg);margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;font:14px var(--mono);color:var(--muted);margin:0;padding:0;list-style:none}
+.facts b{color:var(--fg);font-weight:500}
+.index{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.index a{display:grid;gap:4px;text-decoration:none;color:var(--fg);padding:14px 16px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.index a:hover{border-color:var(--accent)}
+.index .n{font:500 12px var(--mono);color:var(--accent)}
+.index .t{font:700 16px/1.3 var(--display)}
+.index .m{font-size:13px;color:var(--muted)}
+
+.case{display:grid;gap:22px;scroll-margin-top:16px}
+.case-head{display:grid;gap:8px;border-top:2px solid var(--fg);padding-top:16px}
+.case-head .row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px}
+h2{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.01em}
+.tag{font:500 12px/1 var(--mono);padding:6px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.priv{background:var(--amber-soft);color:var(--amber)}
+.case-head p{margin:0;color:var(--muted);max-width:70ch}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.stat{background:var(--surface);padding:16px 18px;display:grid;gap:2px;align-content:start}
+.stat b{font:800 clamp(26px,4vw,34px)/1.1 var(--display);font-variant-numeric:tabular-nums;color:var(--accent);letter-spacing:-.01em}
+.stat span{font-size:13.5px;color:var(--muted);line-height:1.4}
+
+.flow{overflow-x:auto;padding-bottom:4px}
+.flow ol{display:flex;align-items:stretch;gap:0;list-style:none;margin:0;padding:0;min-width:min-content}
+.flow li{display:flex;align-items:center}
+.flow li .box{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:10px 12px;min-width:118px;max-width:170px;display:grid;gap:2px}
+.flow li .box b{font:600 13.5px/1.25 var(--body)}
+.flow li .box small{font:12px/1.35 var(--mono);color:var(--muted)}
+.flow li .box.ai{border-color:var(--accent);background:var(--accent-soft)}
+.flow li .box.human{border-color:var(--amber);background:var(--amber-soft)}
+.flow li + li::before{content:"";width:22px;height:2px;background:var(--line);flex:none;position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font:12px var(--mono);color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;border:1px solid}
+.legend .a{background:var(--accent-soft);border-color:var(--accent)}
+.legend .h{background:var(--amber-soft);border-color:var(--amber)}
+
+.spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+.spec div{min-width:0}
+.spec h3{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.spec p,.spec ul{margin:0;font-size:15px}
+.spec ul{padding-left:18px;display:grid;gap:3px}
+.links{display:flex;flex-wrap:wrap;gap:8px 18px;font:14px var(--mono)}
+.links a::after{content:" ↗"}
+.twin{font-size:15px;padding:12px 16px;border-left:3px solid var(--amber);background:var(--surface);margin:0}
+.twin b{font-weight:600}
+
+.method{display:grid;gap:16px}
+.method ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.method li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:4px}
+.method li b{font:700 15px var(--display)}
+.method li .k{font:500 12px var(--mono);color:var(--accent)}
+.method li span{font-size:14px;color:var(--muted)}
+
+.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.more div{border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:4px;background:var(--surface)}
+.more b{font:700 15px var(--display)}
+.more span{font-size:14px;color:var(--muted)}
+.next{border:1px dashed var(--amber);border-radius:6px;padding:16px 18px;display:grid;gap:6px}
+.next p{margin:0;font-size:15px}
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.results div{background:var(--surface);padding:14px 16px;display:grid;gap:2px;align-content:start}
+.results b{font:800 clamp(22px,3.4vw,28px)/1.1 var(--display);color:var(--fg);font-variant-numeric:tabular-nums}
+.results span{font-size:13px;color:var(--muted);line-height:1.4}
+h2.sub{font-size:clamp(20px,3vw,26px);margin-top:12px}
+.lede.small{font-size:16px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:6px}
+footer p{margin:0;max-width:80ch}
+@media (max-width:640px){.spec{grid-template-columns:1fr}.wrap{padding-block:28px 56px;gap:44px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">Lausanne, Switzerland · Swiss C permit</span>
+  <h1>Cesar Rodriguez: <span>operations, data and practical AI</span></h1>
+  <p class="lede">Industrial engineer with 20+ years in pharma, biotech and medtech (Lonza, Celgene / Bristol Myers Squibb, 3M, CareFusion) and consumer electronics (Apple). I use data and technology to make operations more efficient and more accurate, from planning to delivery, in regulated GxP (good practice) environments.</p>
+  <div class="results" aria-label="Results delivered">
+    <div><b>−20%</b><span>third-party logistics (3PL) costs</span></div>
+    <div><b>+15%</b><span>forecast accuracy in Europe, Middle East and Africa (EMEA)</span></div>
+    <div><b>−20%</b><span>excess stock</span></div>
+    <div><b>30 markets</b><span>global on-time-in-full (OTIF) reporting, ~32,700 shipments a month</span></div>
+  </div>
+  <ul class="facts">
+    <li><b>Languages</b> English C2 · French C2 · Spanish native</li>
+    <li><b>LinkedIn</b> <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">cesar-rodriguez-17401611</a></li>
+    <li><b>GitHub</b> <a href="https://github.com/cesarrb">github.com/cesarrb</a></li>
+  </ul>
+  <h2 class="sub">Three AI and data workflows, built and measured</h2>
+  <p class="lede small">Each case shows the problem, the tools, what I built, the guardrails and numbers you can check. All data is my own or public; no employer data is used.</p>
+  <nav class="index" aria-label="Workflows">
+    <a href="#w1"><span class="n">W1 · LLM triage</span><span class="t">Job-market radar</span><span class="m">108,904 postings screened, 14,160 scored by a local model</span></a>
+    <a href="#w2"><span class="n">W2 · RAG and knowledge</span><span class="t">Knowledge assistant with verified citations</span><span class="m">237 h of video and 6,398 passages made searchable</span></a>
+    <a href="#w3"><span class="n">W3 · Data governance</span><span class="t">Governed data, ready for AI</span><span class="m">182 column-level lineage links, 4 data contracts, CI</span></a>
+  </nav>
+</header>
+
+<!-- W1 -->
+<section class="case" id="w1">
+  <div class="case-head">
+    <div class="row"><span class="eyebrow">W1 · LLM triage pipeline</span><span class="tag priv">Private repo · demo on request</span></div>
+    <h2>Job-market radar: thousands of postings read and ranked by a local LLM</h2>
+    <p>A daily system that collects job postings from Swiss boards and employer career sites, removes duplicates and asks a local large language model (LLM) how well each one fits a given profile.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>108,904</b><span>unique postings, de-duplicated by fingerprint</span></div>
+    <div class="stat"><b>14,160</b><span>fit assessments written by the LLM</span></div>
+    <div class="stat"><b>257</b><span>employer career sites, plus about 10 job boards</span></div>
+    <div class="stat"><b>3 a day</b><span>full sweeps, plus a fast check every 10 minutes</span></div>
+  </div>
+  <div>
+    <div class="flow"><ol>
+      <li><div class="box"><b>Collect</b><small>boards + 257 career sites</small></div></li>
+      <li><div class="box"><b>De-duplicate</b><small>fingerprint per posting</small></div></li>
+      <li><div class="box"><b>Pre-filter</b><small>keywords, language, location</small></div></li>
+      <li><div class="box ai"><b>LLM fit score</b><small>rubric + verified facts</small></div></li>
+      <li><div class="box"><b>Rank and alert</b><small>freshest first</small></div></li>
+      <li><div class="box human"><b>Human decides</b><small>apply or skip</small></div></li>
+    </ol></div>
+    <div class="legend"><span><i class="a"></i>AI step</span><span><i class="h"></i>Human step</span></div>
+  </div>
+  <div class="spec">
+    <div><h3>Problem</h3><p>Checking job boards and hundreds of company sites by hand took hours every day, and roles posted early in the morning were often missed.</p></div>
+    <div><h3>Tools</h3><p>Python collectors, Qwen 3.6 running locally through Ollama, Claude Code to build and maintain it, macOS launchd for scheduling.</p></div>
+    <div><h3>What I built</h3><ul><li>Readers for several applicant tracking systems (ATS) and job boards</li><li>A scoring rubric plus a list of verified facts the model must use</li><li>A daily history and a page that shows how old each source's data is</li></ul></div>
+    <div><h3>Guardrails</h3><ul><li>The model cannot invent requirements or experience: it scores against the facts list only</li><li>No bypassing of anti-bot protections</li><li>Runs on a local model, so no profile data leaves the machine</li></ul></div>
+  </div>
+  <p class="twin"><b>Business equivalent:</b> the same pattern triages supplier notices, deviation reports, regulatory updates or customer complaints, so specialists only read the few that matter.</p>
+</section>
+
+<!-- W2 -->
+<section class="case" id="w2">
+  <div class="case-head">
+    <div class="row"><span class="eyebrow">W2 · Retrieval-augmented generation (RAG)</span><span class="tag">Public repo</span></div>
+    <h2>Knowledge assistant: answers from recorded talks, with citations that are checked</h2>
+    <p>A private chat assistant over transcripts and documents. It searches by keyword and by meaning, answers only from what it found, and removes any citation that points to a passage it never retrieved.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>237 h</b><span>of lectures turned into an EN/ES guide (180 videos)</span></div>
+    <div class="stat"><b>6,398</b><span>passages indexed for one expert corpus: blog, 12 interviews, ~1,550 posts</span></div>
+    <div class="stat"><b>3</b><span>interchangeable model backends: Ollama, LM Studio, Claude</span></div>
+    <div class="stat"><b>9</b><span>automated tests, including the citation check that drops invented sources</span></div>
+  </div>
+  <div>
+    <div class="flow"><ol>
+      <li><div class="box"><b>Transcripts and docs</b><small>dated, with source URL</small></div></li>
+      <li><div class="box"><b>Chunk</b><small>~250 words; speaker turns only</small></div></li>
+      <li><div class="box"><b>Hybrid search</b><small>BM25 + vectors, fused (RRF)</small></div></li>
+      <li><div class="box ai"><b>Grounded answer</b><small>"no material" if not covered</small></div></li>
+      <li><div class="box"><b>Citation check</b><small>drop unretrieved ids</small></div></li>
+      <li><div class="box human"><b>Reader verifies</b><small>click citation → source</small></div></li>
+    </ol></div>
+    <div class="legend"><span><i class="a"></i>AI step</span><span><i class="h"></i>Human step</span></div>
+  </div>
+  <div class="spec">
+    <div><h3>Problem</h3><p>Expertise lives in long recorded talks and interviews. Nobody has time to watch 200+ hours to find one answer, and generic chatbots cite sources they never read.</p></div>
+    <div><h3>Tools</h3><p>Python and SQLite full-text search (FTS5), Ollama embeddings, NumPy, local Qwen models or the Claude Code CLI, a single-file web UI. No framework.</p></div>
+    <div><h3>What I built</h3><ul><li>Keyword (BM25) and vector retrieval combined with reciprocal rank fusion (RRF)</li><li>A cap per document so one long source cannot crowd out the rest</li><li>A video pipeline: subtitles and key slides → summaries with links to the exact minute</li></ul></div>
+    <div><h3>Guardrails</h3><ul><li>Answers only from retrieved sources; says so when the sources do not cover the question</li><li>Interviewer questions are never attributed to the guest</li><li>Runs fully local by default, so documents stay on the machine</li></ul></div>
+  </div>
+  <div class="links"><a href="https://github.com/cesarrb/local-rag-assistant">github.com/cesarrb/local-rag-assistant</a></div>
+  <p class="twin"><b>Business equivalent:</b> recorded trainings, SOP (standard operating procedure) walkthroughs and town halls become a searchable knowledge base where every answer points back to the source.</p>
+</section>
+
+<!-- W3 -->
+<section class="case" id="w3">
+  <div class="case-head">
+    <div class="row"><span class="eyebrow">W3 · Data governance for AI</span><span class="tag">Public repo · live demo</span></div>
+    <h2>Governed data, ready for AI: catalogue, lineage and contracts kept as code</h2>
+    <p>AI is only as reliable as the data behind it. This project governs a synthetic SAP-style supply chain from ERP tables to the KPI dashboard, using OpenMetadata, dbt and Metabase, all checked automatically on every change.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>182</b><span>column-level lineage links, ERP table → dashboard</span></div>
+    <div class="stat"><b>6 / 6</b><span>quality-test failures match the 3 defects planted on purpose (31 tests)</span></div>
+    <div class="stat"><b>4</b><span>data contracts in the Open Data Contract Standard (ODCS), all passing</span></div>
+    <div class="stat"><b>100 %</b><span>of 26 tables and 182 columns documented</span></div>
+  </div>
+  <div>
+    <div class="flow"><ol>
+      <li><div class="box"><b>SAP-style ERP</b><small>MARA, EKKO, VBAK, LIKP…</small></div></li>
+      <li><div class="box"><b>dbt models</b><small>staging → KPI marts</small></div></li>
+      <li><div class="box"><b>Metabase</b><small>OTIF, plan vs actual</small></div></li>
+      <li><div class="box ai"><b>Auto-classify PII</b><small>5 personal-data columns</small></div></li>
+      <li><div class="box human"><b>Steward review</b><small>1 added, 4 rejected</small></div></li>
+      <li><div class="box"><b>CI gate</b><small>tests, docs, contracts</small></div></li>
+    </ol></div>
+    <div class="legend"><span><i class="a"></i>Automated classification</span><span><i class="h"></i>Human step</span></div>
+  </div>
+  <div class="spec">
+    <div><h3>Problem</h3><p>Teams want AI on top of ERP data, but nobody can say where a KPI comes from, who owns it, which columns hold personal data or whether today's numbers passed their checks.</p></div>
+    <div><h3>Tools</h3><p>OpenMetadata 2.0.7, dbt, Postgres, Metabase, Docker, GitHub Actions. Governance rules written in YAML files.</p></div>
+    <div><h3>What I built</h3><ul><li>Lineage from raw tables to each dashboard chart, derived automatically</li><li>13 business glossary terms (OTIF, days of inventory, safety stock…) linked to the column that computes each KPI</li><li>An access policy and a governance scorecard</li></ul></div>
+    <div><h3>Guardrails</h3><ul><li>Personal-data tags confirmed by a human data steward</li><li>dbt refuses to build a certified table whose schema drifts</li><li>Every pull request rebuilds the warehouse and blocks on failed tests</li></ul></div>
+  </div>
+  <div class="links"><a href="https://github.com/cesarrb/openmetadata-supply-chain-governance">github.com/cesarrb/openmetadata-supply-chain-governance</a><a href="https://cesarrb.github.io/openmetadata-supply-chain-governance/">Live lineage demo</a></div>
+  <p class="twin"><b>Business equivalent:</b> in GxP-regulated pharma, this is the traceability that lets an AI assistant answer from certified data, with an owner and an audit trail behind every number.</p>
+</section>
+
+<section class="method">
+  <span class="eyebrow">How I run an AI rollout</span>
+  <h2>The same five steps in every workflow</h2>
+  <ol>
+    <li><span class="k">Step 1</span><b>Pick a painful task</b><span>Frequent, slow and easy to check. Time it before changing anything.</span></li>
+    <li><span class="k">Step 2</span><b>Write the rules first</b><span>What the model may use, what it must never do, and where a human signs off.</span></li>
+    <li><span class="k">Step 3</span><b>Build the smallest version</b><span>Local or approved tools, real inputs, one owner.</span></li>
+    <li><span class="k">Step 4</span><b>Measure</b><span>Volume handled, errors caught, minutes saved, and whether people keep using it.</span></li>
+    <li><span class="k">Step 5</span><b>Hand it over</b><span>Short guide, prompt library and office hours, so the team runs it without me.</span></li>
+  </ol>
+</section>
+
+<section class="method">
+  <span class="eyebrow">Also on GitHub</span>
+  <div class="more">
+    <div><b><a href="https://github.com/cesarrb/clasificador-noticias">Fake-news classifier (EN/ES)</a></b><span>Removed data leakage from a public model and calibrated its probabilities: expected calibration error (ECE) cut from 5.4 to 0.4 points.</span></div>
+    <div><b><a href="https://github.com/cesarrb/fondos-bankinter">Daily fund-data pipeline</a></b><span>26,000+ mutual funds snapshotted by GitHub Actions, with completeness checks and data-freshness alerts. <a href="https://cesarrb.github.io/fondos-bankinter/">Live page</a>.</span></div>
+  </div>
+  <div class="next">
+    <span class="eyebrow">Next case · December 2026</span>
+    <p><b>Enablement pilot with five non-technical users.</b> A 60-minute workshop, a starter prompt library, office hours and a one-page responsible-use guide, measured on each person's own task before and after.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Workflow figures measured on 19 November 2026 from each project's own data files and repositories. The job-market radar's code is private because it contains personal profile data; a screen-share demo is available on request.</p>
+  <p>Cesar Rodriguez · Lausanne · <a href="https://www.linkedin.com/in/cesar-rodriguez-17401611">LinkedIn</a> · <a href="https://github.com/cesarrb">GitHub</a></p>
+</footer>
+</div>
+</body>
+</html>
