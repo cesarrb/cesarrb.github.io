@@ -111,6 +111,16 @@ footer p{margin:0;max-width:80ch}
 /* ---- visual page additions ---- */
 .small{font-size:14px}.muted{color:var(--muted)}
 section>h2{margin:6px 0 14px}
+.tl{display:grid;gap:14px}
+.tl-row{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center}
+.tl-lab b{display:block;font:700 15px/1.2 var(--display)}
+.tl-lab span{font-size:12.5px;color:var(--muted)}
+.tl-track{position:relative;height:18px;background:repeating-linear-gradient(90deg,transparent 0 calc(9.09% - 1px),var(--line) calc(9.09% - 1px) 9.09%);border-radius:4px}
+.tl-track i{position:absolute;top:0;bottom:0;background:var(--accent);border-radius:4px;opacity:.88}
+.tl-track i:hover{opacity:1}
+.tl-axis{display:grid;grid-template-columns:210px 1fr;gap:14px}
+.tl-axis div{display:flex;justify-content:space-between;font:500 11px var(--mono);color:var(--muted)}
+@media (max-width:640px){.tl-row,.tl-axis{grid-template-columns:1fr;gap:4px}.tl-axis>span{display:none}}
 
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 16px 12px}
@@ -186,7 +196,7 @@ body.detail .detail-only{display:block}
 <section>
   <span class="eyebrow">Where I have done it</span>
   <h2>22 years, five companies</h2>
-  <div class="panel"><svg id="tl" viewBox="0 0 900 300" role="img" aria-label="Career timeline 2004 to 2026"></svg></div>
+  <div class="panel"><div id="tl" class="tl" role="img" aria-label="Career timeline 2004 to 2026"></div></div>
   <div class="detail-only">
     <ul class="small">
       <li><b>Lonza (2025–2026):</b> monthly S&amp;OP process and scenario lock across the sites, from VPs to site teams; Power BI cockpits as one source of truth from SAP, OMP and SQL Server.</li>
@@ -238,15 +248,15 @@ function hideTip(){tip.style.opacity=0}
 function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
 const kp=document.getElementById('kpis');
 KPIS.forEach(k=>{
-  const max=120,W=220,H=70,bw=64;
+  const max=120,W=220,H=96,bw=70;
   const h=v=>v/max*(H-14);
   const d=document.createElement('div');d.className='kpi';
   d.innerHTML=`<div class="big">${k.big}</div><div class="lbl">${k.lbl}</div>
-  <svg viewBox="0 0 ${W} ${H+16}" aria-label="${k.lbl}: before ${k.a}, after ${k.b}">
+  <svg viewBox="0 -4 ${W} ${H+20}" aria-label="${k.lbl}: before ${k.a}, after ${k.b}">
    <line x1="0" x2="${W}" y1="${H}" y2="${H}" class="tl-grid"/>
    <rect data-t="Before: index ${k.a}" x="30" y="${H-h(k.a)}" width="${bw}" height="${h(k.a)}" rx="4" fill="var(--line)"/>
    <rect data-t="After: index ${k.b} (${k.big})" x="${W-30-bw}" y="${H-h(k.b)}" width="${bw}" height="${h(k.b)}" rx="4" fill="var(--accent)"/>
-   <text x="${30+bw/2}" y="${H+13}" text-anchor="middle" class="tl-ax">before</text>
+   <text x="${30+bw/2}" y="${H-h(k.a)-6}" text-anchor="middle" class="tl-ax">${k.a}</text><text x="${W-30-bw/2}" y="${H-h(k.b)-6}" text-anchor="middle" class="tl-txt">${k.b}</text><text x="${30+bw/2}" y="${H+13}" text-anchor="middle" class="tl-ax">before</text>
    <text x="${W-30-bw/2}" y="${H+13}" text-anchor="middle" class="tl-ax">after</text>
   </svg>`;
   kp.appendChild(d);
@@ -261,19 +271,14 @@ const JOBS=[
  {c:"Lonza",r:"Supply chain analytics (contract)",s:2025.75,e:2026.45}
 ];
 (function(){
-  const svg=document.getElementById('tl'),x0=2004,x1=2026.6,L=10,R=890,rowH=52,top=14;
-  const X=y=>L+(y-x0)/(x1-x0)*(R-L);
-  let g='';
-  for(let y=2004;y<=2026;y+=2){g+=`<line x1="${X(y)}" x2="${X(y)}" y1="${top-6}" y2="${top+JOBS.length*rowH}" class="tl-grid"/><text x="${X(y)}" y="${top+JOBS.length*rowH+16}" text-anchor="middle" class="tl-ax">${y}</text>`}
-  JOBS.forEach((j,i)=>{
-    const y=top+i*rowH, w=Math.max(X(j.e)-X(j.s),6), right=X(j.s)+w>600;
-    g+=`<rect class="tl-bar" data-t="${j.c}: ${j.r} (${Math.floor(j.s)}–${Math.floor(j.e)})" x="${X(j.s)}" y="${y}" width="${w}" height="16" rx="4"/>`;
-    const tx=right? X(j.s)-8 : X(j.s)+w+8, an=right?'end':'start';
-    g+=`<text x="${tx}" y="${y+12}" text-anchor="${an}" class="tl-txt">${j.c}</text><text x="${tx}" y="${y+30}" text-anchor="${an}" class="tl-sub">${j.r}</text>`;
+  const el=document.getElementById('tl'),x0=2004,x1=2026.5,P=y=>(y-x0)/(x1-x0)*100;
+  let h='';
+  JOBS.slice().reverse().forEach(j=>{
+    h+=`<div class="tl-row"><div class="tl-lab"><b>${j.c}</b><span>${j.r}</span></div><div class="tl-track"><i data-t="${j.c}: ${Math.floor(j.s)}–${Math.floor(j.e)}" style="left:${P(j.s)}%;width:${Math.max(P(j.e)-P(j.s),1.5)}%"></i></div></div>`;
   });
-  svg.setAttribute('viewBox',`0 0 900 ${top+JOBS.length*rowH+24}`);
-  svg.innerHTML=g;
-  svg.querySelectorAll('.tl-bar').forEach(r=>{r.addEventListener('mousemove',e=>showTip(e,r.dataset.t));r.addEventListener('mouseleave',hideTip)});
+  h+=`<div class="tl-axis"><span></span><div><span>2004</span><span>2010</span><span>2015</span><span>2020</span><span>2026</span></div></div>`;
+  el.innerHTML=h;
+  el.querySelectorAll('i[data-t]').forEach(r=>{r.addEventListener('mousemove',e=>showTip(e,r.dataset.t));r.addEventListener('mouseleave',hideTip)});
 })();
 
 const tgl=document.getElementById('tgl');
